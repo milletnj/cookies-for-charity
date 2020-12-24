@@ -92,6 +92,10 @@
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
+.img {
+  max-width: 100%;
+}
+
 .card:hover,
 .card:focus,
 .card:active {
