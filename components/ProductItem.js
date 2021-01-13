@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Product from './Product'
-import styles from '../styles/Product.module.css'
+import styles from '../styles/Product.module.scss'
 
 const ProductItem = ({ product, onAddToCartClicked }) => (
   <div className={styles.card}>

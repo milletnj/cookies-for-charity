@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
-import styles from '../styles/Product.module.css'
+import styles from '../styles/Product.module.scss'
 
 const Product = ({ price, title, description, image }) => (
     <div>

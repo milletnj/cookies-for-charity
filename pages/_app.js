@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import { useStore } from '../store'
 import { getAllProducts } from '../actions'
 
