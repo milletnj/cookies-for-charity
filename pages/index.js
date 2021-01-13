@@ -1,53 +1,35 @@
 import React from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import products from '../products.json';
+import styles from '../styles/Home.module.scss'
+import CartContainer from '../containers/CartContainer'
+import ProductsContainer from '../containers/ProductsContainer';
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Cookies for Charity</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to Macy's Bakery
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+        <a href='https://ide.geeksforgeeks.org/'> 
+            <button> 
+              About Us
+            </button> 
+          </a> 
         </p>
 
         <div className={styles.grid}>
-          {products.map(product => {
-            return (
-              <div key={product.id} className={styles.card}>
-                <img src={product.image} alt={`Preview of ${product.title}`} className={styles.img} />
-                <h3>{product.title}</h3>
-                <p>{product.description}</p>
-                <p>${product.price}</p>
-                <p>
-                  <button>Add to Cart</button>
-                </p>
-              </div>
-            );
-          })}
+          <ProductsContainer />
+          <CartContainer />
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
   )
 }
