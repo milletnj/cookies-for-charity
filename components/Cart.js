@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import style from '../styles/Cart.module.scss'
-import Product from './Product'
+import CartProduct from './CartProduct'
 
 const Cart = ({ products, total, onCheckoutClicked }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,20 +11,24 @@ const Cart = ({ products, total, onCheckoutClicked }) => {
     classes.push(style['float-cart--open'])
   }
 
+  const cartTotal = products.reduce((a, b) => a + (b["quantity"] || 0), 0);
+
+  const test = () => {
+
+  }
+
   const hasProducts = products.length > 0
   const nodes = hasProducts ? (
     products.map(product =>
-      <div key={product.id} className={style["shelf-item"]}>
-        <Product
-          title={product.title}
-          price={product.price}
-          description={product.description}
-          image={product.image} />
-        </div>
+      <CartProduct
+        product={product}
+        removeProduct={test}
+        changeProductQuantity={test}
+        key={product.id} />
     )
   ) : (
-    <em>Please add some products to cart.</em>
-  )
+      <em>Please add some products to cart.</em>
+    )
 
   return (
     <div className={classes.join(' ')}>
@@ -42,15 +46,15 @@ const Cart = ({ products, total, onCheckoutClicked }) => {
         <span
           onClick={() => setIsOpen(!isOpen)}
           className={style["bag"] + " " + style["bag--float-cart-closed"]}>
-          <span className={style["bag__quantity"]}>{products.length}</span>
+          <span className={style["bag__quantity"]}>{cartTotal}</span>
         </span>
       )}
 
       <div className={style["float-cart__content"]}>
         <div className={style["float-cart__header"]}>
-          {/* <span className="bag">
-            <span className="bag__quantity">{cartTotal.productQuantity}</span>
-          </span> */}
+          <span className={style["bag"]}>
+              <span className={style["bag__quantity"]}>{cartTotal}</span>
+          </span>
           <span className={style["header-title"]}>Cart</span>
         </div>
 
@@ -62,7 +66,7 @@ const Cart = ({ products, total, onCheckoutClicked }) => {
           <div className={style["sub"]}>SUBTOTAL</div>
           <div className={style["sub-price"]}>
             <p className={style["sub-price__val"]}>
-                &#36;{total}
+              &#36;{total}
             </p>
           </div>
           <div onClick={onCheckoutClicked} className={style["buy-btn"]}>
