@@ -2,7 +2,8 @@ import {
     ADD_TO_CART,
     CHECKOUT_REQUEST,
     CHECKOUT_FAILURE,
-    REMOVE_FROM_CART
+    REMOVE_FROM_CART,
+    CHANGE_PRODUCT_QUANTITY
   } from '../constants/ActionTypes'
   
   const initialState = {
@@ -36,6 +37,12 @@ import {
         const { productId } = action
         return { ...state,
           [productId]: 0
+        }
+      }
+      case CHANGE_PRODUCT_QUANTITY: {
+        const { productId, quantity } = action
+        return { ...state,
+          [productId]: quantity
         }
       }
       default:

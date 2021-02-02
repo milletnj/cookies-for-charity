@@ -5,13 +5,11 @@ import style from '../styles/Cart.module.scss'
 
 const CartProduct = ({ product, changeProductQuantity, onRemoveFromCart}) => {
     const onIncrease = () => {
-        product.quantity = product.quantity + 1;
-        changeProductQuantity(product);
+        changeProductQuantity(product.id, product.quantity + 1);
     }
 
     const onDecrease = () => {
-        product.quantity = product.quantity - 1;
-        changeProductQuantity(product);
+        changeProductQuantity(product.id, product.quantity - 1);
     }
 
     return (
@@ -33,8 +31,8 @@ const CartProduct = ({ product, changeProductQuantity, onRemoveFromCart}) => {
             <div className={style["shelf-item__price"]}>
                 <p>&#36;{product.price}</p>
                 <div>
-                    <button onClick={onIncrease} disabled={product.quantity === 1 ? true : false} className={style["change-product-button"]}>-</button>
-                    <button onClick={onDecrease} className={style["change-product-button"]}>+</button>
+                    <button onClick={onDecrease} disabled={product.quantity === 1 ? true : false} className={style["change-product-button"]}>-</button>
+                    <button onClick={onIncrease} className={style["change-product-button"]}>+</button>
                 </div>
             </div>
         </div>
@@ -43,6 +41,7 @@ const CartProduct = ({ product, changeProductQuantity, onRemoveFromCart}) => {
 
 CartProduct.propTypes = {
     product: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired,

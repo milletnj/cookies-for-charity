@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import style from '../styles/Cart.module.scss'
 import CartProduct from './CartProduct'
 
-const Cart = ({ products, total, onCheckoutClicked, removeFromCart }) => {
+const Cart = ({ products, total, onCheckoutClicked, removeFromCart, changeProductQuantity }) => {
   const [isOpen, setIsOpen] = useState(false);
   let classes = [style['float-cart']];
 
@@ -13,17 +13,13 @@ const Cart = ({ products, total, onCheckoutClicked, removeFromCart }) => {
 
   const cartTotal = products.reduce((a, b) => a + (b["quantity"] || 0), 0);
 
-  const test = () => {
-
-  }
-
   const hasProducts = products.length > 0
   const nodes = hasProducts ? (
     products.map(product =>
       <CartProduct
         product={product}
         onRemoveFromCart={() => removeFromCart(product.id)}
-        changeProductQuantity={test}
+        changeProductQuantity={changeProductQuantity}
         key={product.id} />
     )
   ) : (
@@ -82,7 +78,8 @@ Cart.propTypes = {
   products: PropTypes.array.isRequired,
   total: PropTypes.string.isRequired,
   onCheckoutClicked: PropTypes.func.isRequired,
-  removeFromCart: PropTypes.func.isRequired
+  removeFromCart: PropTypes.func.isRequired,
+  changeProductQuantity: PropTypes.func.isRequired
 };
 
 export default Cart;

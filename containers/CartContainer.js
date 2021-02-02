@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { checkout, removeFromCart } from '../actions'
+import { checkout, removeFromCart, changeProductQuantity } from '../actions'
 import { getTotal, getCartProducts } from '../reducers'
 import Cart from '../components/Cart'
 
-const CartContainer = ({ products, total, checkout, removeFromCart }) => (
+const CartContainer = ({ products, total, checkout, removeFromCart, changeProductQuantity }) => (
   <Cart
     products={products}
     total={total}
     onCheckoutClicked={() => checkout(products)}
-    removeFromCart={removeFromCart} />
+    removeFromCart={removeFromCart}
+    changeProductQuantity={changeProductQuantity} />
 )
 
 CartContainer.propTypes = {
@@ -22,7 +23,8 @@ CartContainer.propTypes = {
   })).isRequired,
   total: PropTypes.string,
   checkout: PropTypes.func.isRequired,
-  removeFromCart: PropTypes.func.isRequired
+  removeFromCart: PropTypes.func.isRequired,
+  changeProductQuantity: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -32,5 +34,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { checkout, removeFromCart }
+  { checkout, removeFromCart, changeProductQuantity }
 )(CartContainer)
