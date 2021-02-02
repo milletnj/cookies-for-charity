@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import style from '../styles/Cart.module.scss'
 import CartProduct from './CartProduct'
 
-const Cart = ({ products, total, onCheckoutClicked }) => {
+const Cart = ({ products, total, onCheckoutClicked, removeFromCart }) => {
   const [isOpen, setIsOpen] = useState(false);
   let classes = [style['float-cart']];
 
@@ -22,7 +22,7 @@ const Cart = ({ products, total, onCheckoutClicked }) => {
     products.map(product =>
       <CartProduct
         product={product}
-        removeProduct={test}
+        onRemoveFromCart={() => removeFromCart(product.id)}
         changeProductQuantity={test}
         key={product.id} />
     )
@@ -79,9 +79,10 @@ const Cart = ({ products, total, onCheckoutClicked }) => {
 };
 
 Cart.propTypes = {
-  products: PropTypes.array,
-  total: PropTypes.string,
-  onCheckoutClicked: PropTypes.func,
+  products: PropTypes.array.isRequired,
+  total: PropTypes.string.isRequired,
+  onCheckoutClicked: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired
 };
 
 export default Cart;
