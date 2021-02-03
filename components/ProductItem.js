@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Product from './Product'
-import styles from '../styles/Product.module.scss'
+import { Button, Card } from 'antd'
 
 const ProductItem = ({ product, onAddToCartClicked }) => (
-  <div className={styles.card}>
+  <Card hoverable>
     <Product
       title={product.title}
       price={product.price}
       description={product.description}
       image={product.image} />
-    <button
+    <Button type={'primary'}
       onClick={onAddToCartClicked}>
       Add to Cart
-    </button>
-  </div>
+    </Button>
+  </Card>
 )
 
 ProductItem.propTypes = {

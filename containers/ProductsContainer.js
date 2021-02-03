@@ -5,14 +5,16 @@ import { addToCart } from '../actions'
 import { getVisibleProducts } from '../reducers/products'
 import ProductItem from '../components/ProductItem'
 import ProductsList from '../components/ProductsList'
+import { Col } from 'antd'
 
 const ProductsContainer = ({ products, addToCart }) => (
-  <ProductsList title="Cookies">
+  <ProductsList>
     {products.map(product =>
-      <ProductItem
-        key={product.id}
-        product={product}
-        onAddToCartClicked={() => addToCart(product.id)} />
+      <Col key={product.id}>
+        <ProductItem
+          product={product}
+          onAddToCartClicked={() => addToCart(product.id)} />
+      </Col>
     )}
   </ProductsList>
 )

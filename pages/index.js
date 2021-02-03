@@ -2,7 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import CartContainer from '../containers/CartContainer'
-import ProductsContainer from '../containers/ProductsContainer';
+import ProductsContainer from '../containers/ProductsContainer'
+import { Button, Typography } from 'antd'
+
+const { Title } = Typography;
 
 export default function Home() {
   return (
@@ -13,15 +16,15 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <Title className={styles.title}>
           Welcome to Macy's Bakery
-        </h1>
+        </Title>
 
         <p className={styles.description}>
         <a href='https://ide.geeksforgeeks.org/'> 
-            <button> 
+            <Button> 
               About Us
-            </button> 
+            </Button> 
           </a> 
         </p>
 
