@@ -12,13 +12,26 @@ export const getAllProducts = () => dispatch => {
   })
 }
 
-const addToCartUnsafe = productId => ({
-  type: types.ADD_TO_CART,
-  productId
-})
-
 export const addToCart = productId => dispatch => {
-    dispatch(addToCartUnsafe(productId))
+  dispatch({
+    type: types.ADD_TO_CART,
+    productId
+  })
+}
+
+export const removeFromCart = productId => dispatch => {
+  dispatch({
+    type: types.REMOVE_FROM_CART,
+    productId
+  })
+}
+
+export const changeProductQuantity = (productId, quantity) => dispatch => {
+  dispatch({
+    type: types.CHANGE_PRODUCT_QUANTITY,
+    productId,
+    quantity
+  })
 }
 
 export const checkout = products => (dispatch, getState) => {

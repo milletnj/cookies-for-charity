@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 import reducer from '../reducers'
 
@@ -12,8 +13,9 @@ function initStore(preloadedState = initialState) {
   return createStore(
     reducer,
     preloadedState,
-    applyMiddleware(...middleware)
-  )
+    composeWithDevTools(
+      applyMiddleware(...middleware)
+  ))
 }
 
 export const initializeStore = (preloadedState) => {

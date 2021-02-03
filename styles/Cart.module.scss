@@ -115,22 +115,6 @@
           left: 5%;
         }
   
-        &--mouseover {
-          background: #0c0b10;
-          .shelf-item__details {
-            .title,
-            .desc {
-              text-decoration: line-through;
-              opacity: 0.6;
-            }
-          }
-  
-          .shelf-item__price {
-            text-decoration: line-through;
-            opacity: 0.6;
-          }
-        }
-  
         &__del {
           width: 16px;
           height: 16px;
