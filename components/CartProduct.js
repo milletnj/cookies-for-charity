@@ -1,6 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 import Image from 'next/image'
+import { Button } from 'antd'
+import {
+    CloseOutlined,
+    PlusOutlined,
+    MinusOutlined
+  } from '@ant-design/icons'
 import style from '../styles/Cart.module.scss'
 
 const CartProduct = ({ product, changeProductQuantity, onRemoveFromCart}) => {
@@ -14,10 +20,9 @@ const CartProduct = ({ product, changeProductQuantity, onRemoveFromCart}) => {
 
     return (
         <div className={style["shelf-item"]}>
-            <div
-                className={style["shelf-item__del"]}
-                onClick={onRemoveFromCart}
-            />
+            <div>
+                <CloseOutlined type="close" className={style["shelf-item__del"]} onClick={onRemoveFromCart} />
+            </div>
             <div className={style["shelf-item__thumb"]}>
                 <Image src={product.image} alt={`Preview of ${product.title}`} width="75px" height="75px" />
             </div>
@@ -31,8 +36,8 @@ const CartProduct = ({ product, changeProductQuantity, onRemoveFromCart}) => {
             <div className={style["shelf-item__price"]}>
                 <p>&#36;{product.price}</p>
                 <div>
-                    <button onClick={onDecrease} disabled={product.quantity === 1 ? true : false} className={style["change-product-button"]}>-</button>
-                    <button onClick={onIncrease} className={style["change-product-button"]}>+</button>
+                    <Button onClick={onDecrease} disabled={product.quantity === 1 ? true : false} className={style["change-product-button"]} style={{marginRight: '5px'}} icon={<MinusOutlined />} />
+                    <Button onClick={onIncrease} className={style["change-product-button"]} icon={<PlusOutlined />} />
                 </div>
             </div>
         </div>
