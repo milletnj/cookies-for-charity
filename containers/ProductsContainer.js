@@ -10,7 +10,7 @@ import { Col } from 'antd'
 const ProductsContainer = ({ products, addToCart }) => (
   <ProductsList>
     {products.map(product =>
-      <Col key={product.id}>
+      <Col key={product.id} style={{margin: '10px'}}>
         <ProductItem
           product={product}
           onAddToCartClicked={() => addToCart(product.id)} />

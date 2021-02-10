@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Row } from 'antd'
+import styles from '../styles/Product.module.scss'
 
 const ProductsList = ({ children }) => (
   <div>
-    <Row gutter={[16,16]}>{children}</Row>
+    <div className={styles.grid}>{children}</div>
   </div>
 )
 
