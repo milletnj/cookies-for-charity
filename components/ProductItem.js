@@ -1,30 +1,30 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Product from './Product'
-import styles from '../styles/Product.module.scss'
+import React from "react";
+import PropTypes from "prop-types";
+import Product from "./Product";
+import { Button, Card } from "antd";
 
 const ProductItem = ({ product, onAddToCartClicked }) => (
-  <div className={styles.card}>
+  <Card hoverable>
     <Product
       title={product.title}
       price={product.price}
       description={product.description}
-      image={product.image} />
-    <button
-      onClick={onAddToCartClicked}>
+      image={product.image}
+    />
+    <Button type={"primary"} onClick={onAddToCartClicked}>
       Add to Cart
-    </button>
-  </div>
-)
+    </Button>
+  </Card>
+);
 
 ProductItem.propTypes = {
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
   }).isRequired,
-  onAddToCartClicked: PropTypes.func.isRequired
-}
+  onAddToCartClicked: PropTypes.func.isRequired,
+};
 
-export default ProductItem
+export default ProductItem;
