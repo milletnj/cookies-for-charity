@@ -4,6 +4,7 @@ import "../styles/globals.scss";
 import "antd/dist/antd.css";
 import { useStore } from "../store";
 import { getAllProducts } from "../actions";
+import SiteLayout from "../components/SiteLayout";
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -12,7 +13,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <SiteLayout>
+        <Component {...pageProps} />
+      </SiteLayout>
     </Provider>
   );
 }
