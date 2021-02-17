@@ -30,7 +30,9 @@ const Cart = ({
       />
     ))
   ) : (
-    <em>Please add some products to cart.</em>
+    <div className={style["shelf-empty"]}>
+      <em>Cart is currently empty.</em>
+    </div>
   );
 
   return (
