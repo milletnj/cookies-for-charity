@@ -1,24 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addToCart } from "../actions";
+import { connect, useDispatch } from "react-redux";
+import { addToCart, getAllProducts } from "../actions";
 import { getVisibleProducts } from "../reducers/products";
 import ProductItem from "../components/ProductItem";
 import ProductsList from "../components/ProductsList";
 import { Col } from "antd";
 
-const ProductsContainer = ({ products, addToCart }) => (
-  <ProductsList>
-    {products.map((product) => (
-      <Col key={product.id} style={{ margin: "10px" }}>
-        <ProductItem
-          product={product}
-          onAddToCartClicked={() => addToCart(product.id)}
-        />
-      </Col>
-    ))}
-  </ProductsList>
-);
+const ProductsContainer = ({ products, addToCart }) => {
+  const dispatch = useDispatch();
+  dispatch(getAllProducts());
+
+  return (
+    <ProductsList>
+      {products.map((product) => (
+        <Col key={product.id} style={{ margin: "10px" }}>
+          <ProductItem
+            product={product}
+            onAddToCartClicked={() => addToCart(product.id)}
+          />
+        </Col>
+      ))}
+    </ProductsList>
+  );
+};
 
 ProductsContainer.propTypes = {
   products: PropTypes.arrayOf(
