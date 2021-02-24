@@ -17,7 +17,7 @@ const ProductsContainer = ({ products, addToCart }) => {
         <Col key={product.id} style={{ margin: "10px" }}>
           <ProductItem
             product={product}
-            onAddToCartClicked={() => addToCart(product.id)}
+            onAddToCartClicked={() => addToCart(product)}
           />
         </Col>
       ))}

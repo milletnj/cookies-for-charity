@@ -12,25 +12,54 @@ export const getAllProducts = () => (dispatch) => {
   });
 };
 
-export const addToCart = (productId) => (dispatch) => {
+export const addToCart = (product) => (dispatch, getState) => {
+  const { cart } = getState();
+  const cartItems = cart.items.slice();
+
+  let productAlreadyInCart = false;
+  cartItems.forEach((cartItem) => {
+    if (cartItem.id === product.id) {
+      cartItem.quantity += 1;
+      productAlreadyInCart = true;
+    }
+  });
+
+  if (!productAlreadyInCart) {
+    cartItems.push({ ...product, quantity: 1 });
+  }
+
   dispatch({
     type: types.ADD_TO_CART,
-    productId,
+    cartItems,
   });
 };
 
-export const removeFromCart = (productId) => (dispatch) => {
+export const removeFromCart = (productId) => (dispatch, getState) => {
+  const { cart } = getState();
+
+  const cartItems = cart.items.filter((cartItem) => cartItem.id !== productId);
   dispatch({
     type: types.REMOVE_FROM_CART,
-    productId,
+    cartItems,
   });
 };
 
-export const changeProductQuantity = (productId, quantity) => (dispatch) => {
+export const changeProductQuantity = (productId, quantity) => (
+  dispatch,
+  getState
+) => {
+  const { cart } = getState();
+  const cartItems = cart.items.slice();
+
+  cartItems.forEach((cartItem) => {
+    if (cartItem.id === productId) {
+      cartItem.quantity = quantity;
+    }
+  });
+
   dispatch({
     type: types.CHANGE_PRODUCT_QUANTITY,
-    productId,
-    quantity,
+    cartItems,
   });
 };
 
