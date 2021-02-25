@@ -3,22 +3,32 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import reducer from "../reducers";
+import { persistReducer } from "redux-persist";
+import storage from "./storage";
 
 let store;
 const middleware = [thunk];
 
 const initialState = {};
 
+const persistConfig = {
+  key: "primary",
+  storage,
+  whitelist: ["cart"],
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
 function initStore(preloadedState = initialState) {
   return createStore(
-    reducer,
+    persistedReducer,
     preloadedState,
     composeWithDevTools(applyMiddleware(...middleware))
   );
 }
 
 export const initializeStore = (preloadedState) => {
-  let _store = store ?? initStore();
+  let _store = store ?? initStore(preloadedState);
 
   // After navigating to a page with an initial Redux state, merge that state
   // with the current state in the store, and create a new store

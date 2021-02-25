@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { checkout, removeFromCart, changeProductQuantity } from "../actions";
-import { getTotal, getCartProducts } from "../reducers";
 import Cart from "../components/Cart";
+import { getCartProducts, getTotal } from "../selectors/CartSelectors";
 
 const CartContainer = ({
   products,

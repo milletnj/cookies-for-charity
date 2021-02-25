@@ -1,21 +1,28 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { useStore } from "../store";
+import SiteLayout from "../components/SiteLayout";
+import { getAllProducts } from "../actions";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 import "../styles/globals.scss";
 import "antd/dist/antd.css";
-import { useStore } from "../store";
-import { getAllProducts } from "../actions";
-import SiteLayout from "../components/SiteLayout";
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
+  const persistor = persistStore(store, {}, function () {
+    persistor.persist();
+  });
 
   store.dispatch(getAllProducts());
 
   return (
     <Provider store={store}>
-      <SiteLayout>
-        <Component {...pageProps} />
-      </SiteLayout>
+      <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+        <SiteLayout>
+          <Component {...pageProps} />
+        </SiteLayout>
+      </PersistGate>
     </Provider>
   );
 }
