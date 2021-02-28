@@ -2,7 +2,6 @@ import React from "react";
 import { Provider } from "react-redux";
 import { useStore } from "../store";
 import SiteLayout from "../components/SiteLayout";
-import { getAllProducts } from "../actions";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import "../styles/globals.scss";
@@ -13,8 +12,6 @@ function MyApp({ Component, pageProps }) {
   const persistor = persistStore(store, {}, function () {
     persistor.persist();
   });
-
-  store.dispatch(getAllProducts());
 
   return (
     <Provider store={store}>
