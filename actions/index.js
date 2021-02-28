@@ -7,9 +7,8 @@ const receiveProducts = (products) => ({
 });
 
 export const getAllProducts = () => (dispatch) => {
-  shop.getProducts((products) => {
-    dispatch(receiveProducts(products));
-  });
+  const products = shop.getProducts();
+  dispatch(receiveProducts(products));
 };
 
 export const addToCart = (product) => (dispatch, getState) => {

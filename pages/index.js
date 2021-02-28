@@ -3,6 +3,8 @@ import styles from "../styles/Home.module.scss";
 import CartContainer from "../containers/CartContainer";
 import ProductsContainer from "../containers/ProductsContainer";
 import { Button, Typography } from "antd";
+import { initializeStore } from "../store";
+import { getAllProducts } from "../actions";
 
 const { Title } = Typography;
 
@@ -21,4 +23,13 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export function getServerSideProps() {
+  const reduxStore = initializeStore();
+  const { dispatch } = reduxStore;
+
+  dispatch(getAllProducts());
+
+  return { props: { initialReduxState: reduxStore.getState() } };
 }
