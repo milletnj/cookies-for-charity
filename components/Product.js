@@ -14,6 +14,7 @@ const Product = ({ price, title, description, image }) => (
       className={styles.img}
       width="300px"
       height="300px"
+      quality="100"
     />
     <Title level={3}>{title}</Title>
     <p>{description}</p>
