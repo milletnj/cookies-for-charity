@@ -4,6 +4,7 @@ import { useStore } from "../store";
 import SiteLayout from "../components/SiteLayout";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import "../firebase/clientApp";
 import "../styles/globals.scss";
 import "antd/dist/antd.css";
 
