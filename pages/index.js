@@ -4,7 +4,8 @@ import CartContainer from "../containers/CartContainer";
 import ProductsContainer from "../containers/ProductsContainer";
 import { Button, Typography } from "antd";
 import { initializeStore } from "../store";
-import { getAllProducts } from "../actions";
+import { receiveProducts } from "../actions";
+import { getAll } from "../services/products";
 
 const { Title } = Typography;
 
@@ -25,11 +26,12 @@ export default function Home() {
   );
 }
 
-export function getServerSideProps() {
+export const getServerSideProps = async () => {
   const reduxStore = initializeStore();
   const { dispatch } = reduxStore;
 
-  dispatch(getAllProducts());
+  const products = await getAll();
+  dispatch(receiveProducts(products));
 
   return { props: { initialReduxState: reduxStore.getState() } };
-}
+};
