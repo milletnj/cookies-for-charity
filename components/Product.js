@@ -7,7 +7,7 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 const Product = ({ price, title, description, image }) => (
-  <div>
+  <div className={styles.container}>
     <Image
       src={image}
       alt={`Preview of ${title}`}
@@ -18,7 +18,7 @@ const Product = ({ price, title, description, image }) => (
     />
     <Title level={3}>{title}</Title>
     <p>{description}</p>
-    <p>${price}</p>
+    <p style={{ textAlign: "left" }}>${price}</p>
   </div>
 );
 
